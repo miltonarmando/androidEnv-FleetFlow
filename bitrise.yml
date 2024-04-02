@@ -1,43 +1,63 @@
-format_version: '6'
+format_version: '3'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
 workflows:
   primary:
     steps:
       - activate-ssh-key@4.0.3:
-          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - git-clone@4.0.20: {}
-      - script@1.1.5:
+      - git-clone@4.0.26: {}
+      - script@1:
           title: Install dependencies
           inputs:
           - content: |
-              #!/usr/bin/env bash
-              # Install Kivy dependencies
               sudo apt-get update
               sudo apt-get install -y \
-                python3-pip \
-                python3-setuptools \
-                python3-dev \
-                build-essential \
-                git \
-                ffmpeg \
-                libsdl2-dev \
-                libsdl2-image-dev \
-                libsdl2-mixer-dev \
-                libsdl2-ttf-dev \
-                libportmidi-dev \
-                libswscale-dev \
-                libavformat-dev \
-                libavcodec-dev \
-                zlib1g-dev
-              # Install Buildozer
-              pip3 install buildozer
-      - script@1.1.5:
+                  python3-pip \
+                  build-essential \
+                  git \
+                  python3 \
+                  python3-dev \
+                  ffmpeg \
+                  libsdl2-dev \
+                  libsdl2-image-dev \
+                  libsdl2-mixer-dev \
+                  libsdl2-ttf-dev \
+                  libportmidi-dev \
+                  libswscale-dev \
+                  libavformat-dev \
+                  libavcodec-dev \
+                  zlib1g-dev \
+                  libgstreamer1.0 \
+                  gstreamer1.0-plugins-base \
+                  gstreamer1.0-plugins-good \
+                  libsqlite3-dev \
+                  sqlite3 \
+                  bzip2 \
+                  libbz2-dev \
+                  zlib1g-dev \
+                  libssl-dev \
+                  openssl \
+                  libgdbm-dev \
+                  libgdbm-compat-dev \
+                  liblzma-dev \
+                  libreadline-dev \
+                  libncursesw5-dev \
+                  libffi-dev \
+                  uuid-dev \
+                  libffi-dev \
+                  openjdk-17-jdk
+      - script@1:
+          title: Install Buildozer and Cython
+          inputs:
+          - content: |
+              pip install buildozer cython
+      - script@1:
+          title: Initialize Buildozer
+          inputs:
+          - content: |
+              buildozer init
+      - script@1:
           title: Build APK
           inputs:
           - content: |
-              #!/usr/bin/env bash
-              # Navigate to your project directory
-              cd $BITRISE_SOURCE_DIR
-              # Build APK using Buildozer
               buildozer -v android debug
