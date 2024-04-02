@@ -1,19 +1,43 @@
-format_version: '9'
+format_version: '6'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
 workflows:
   primary:
     steps:
-    - activate-ssh-key:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone: {}
-    - script:
-        inputs:
-        - content: |-
-            #!/bin/bash
-            set -ex
-            echo "Running buildozer for iOS"
-            buildozer -v ios debug
-    - deploy-to-bitrise-io:
-        inputs:
-        - notify_user_groups: ''
+      - activate-ssh-key@4.0.3:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@4.0.20: {}
+      - script@1.1.5:
+          title: Install dependencies
+          inputs:
+          - content: |
+              #!/usr/bin/env bash
+              # Install Kivy dependencies
+              sudo apt-get update
+              sudo apt-get install -y \
+                python3-pip \
+                python3-setuptools \
+                python3-dev \
+                build-essential \
+                git \
+                ffmpeg \
+                libsdl2-dev \
+                libsdl2-image-dev \
+                libsdl2-mixer-dev \
+                libsdl2-ttf-dev \
+                libportmidi-dev \
+                libswscale-dev \
+                libavformat-dev \
+                libavcodec-dev \
+                zlib1g-dev
+              # Install Buildozer
+              pip3 install buildozer
+      - script@1.1.5:
+          title: Build APK
+          inputs:
+          - content: |
+              #!/usr/bin/env bash
+              # Navigate to your project directory
+              cd $BITRISE_SOURCE_DIR
+              # Build APK using Buildozer
+              buildozer -v android debug
