@@ -1,0 +1,1278 @@
+ScreenManager:
+    SplashScreen:    
+    LoginScreen:  
+    ReceitaScreen:
+    FlowViewScreen:
+    ChangeAssetScreen:  
+    DespesaScreen:
+    RelatorioScreen:
+    FrotaScreen:
+    CreateAssetScreen:
+    DashboardScreen:
+    FlowChangeScreen:
+
+<SplashScreen>:
+    name: 'splash'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        Image:
+            source: "images/sc1.png"
+            size_hint: 1.10, 1.10
+            pos_hint: {"center_x": .54, "center_y": .6}
+            canvas.before:
+                Color:
+                    rgb: 1, .85, .825, 1
+        
+        MDIconButton:
+            icon: "chevron-right"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .5, "center_y": .12}      
+            on_press: app.root.current = 'login'
+                    
+
+        MDLabel:
+            text: "Gestão de Frota"   
+            pos_hint: {"center_x": .5, "center_y": .28}       
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"35sp"
+            font_name: "Poppins-SemiBold.ttf"
+
+        MDLabel:
+            text: "Powered by Tekinova"   
+            pos_hint: {"center_x": .5, "center_y": .21}       
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0 
+            font_size:"13sp"
+            font_name: "Poppins-Regular.ttf"
+
+<ElementCard@MDCard>:
+    md_bg_color: 120/255, 173/255, 173/255, 1
+    padding:dp(10)
+    spacing:dp(10)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_size: "15sp" 
+            font_name: "Poppins-Medium.ttf"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count
+
+<LoginScreen>:
+    name: 'login'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        Image:
+            source: "images/sc1.png"       
+            size_hint: .5, .5
+            pos_hint: {"center_x": .25, "center_y": .86}
+
+        MDLabel:
+            text: "B e m - v i n d o !"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .73}    
+
+        MDLabel:
+            text: "Insira suas Credenciais"           
+            font_size: "20sp"
+            font_name: "Poppins-Medium.ttf"
+            color: 120/255, 120/255, 120/255, 1
+            pos_hint: {"center_x": .6, "center_y": .66}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "14.5sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .055}    
+            id: lblogin       
+       
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .55}   
+            MDLabel:
+                text:"Usuário"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .8} 
+            TextInput:
+                id: usuario
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .3} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/homem-usuario.png" 
+                icon: "profile"    
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .45, .45
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .1}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .4}  
+            MDLabel:
+                text:"Senha"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .8} 
+            TextInput:
+                id: senha
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .3} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image: 
+                source: "images/chave.png"     
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": .1}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        Button:
+            text: "Entrar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .22}   
+            on_release: 
+                root.getuserx(usuario.text, senha.text)      
+                
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+                
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .85, "center_y": .86}      
+            on_press: app.root.current = 'splash'
+
+<ReceitaScreen>:
+    name: 'checkin'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .055}    
+            id: lbreceita  
+
+
+        MDLabel:
+            text: "Nova Receita"
+            theme_text_color: 'Custom'
+            text_color: (0, 0.5, 0, 0.65)
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .51}   
+            MDLabel:
+                text:"Matricula"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id: matricula
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .4}  
+            MDIconButton:
+                icon: "chevron-down"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                on_release: root.data()
+
+            MDLabel:     
+                text:"Data"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            
+            MDLabel:
+                id: data
+                text: " "
+                font_size: "12sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 2.9} 
+
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .47}  
+            MDLabel:
+                text:"Valor"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: valor
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: False
+            Image: 
+                source: "images/economic.png"
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1  
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .32}  
+            MDLabel:
+                text:"Observação"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 1.27} 
+            TextInput:
+                id: obs
+                size_hint_y: 1.3
+                size_hint_x: 0.9
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .44, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "15sp"
+                multiline: True
+                password: False
+            Image: 
+                source: "images/editor-de-texto.png"     
+                pos_hint: {"center_x": .96, "center_y": .44}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": -0.3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1           
+
+        Button:
+            text: "Cadastrar"
+            background_color: (0, 0.5, 0, 0.9)
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .15}
+            on_release: root.cadastrarReceita(matricula.text, data.text, valor.text, obs.text)
+            canvas.before:
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]      
+
+<DespesaScreen>:
+    name: 'checkout'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .055}    
+            id: lbreceita  
+
+
+        MDLabel:
+            text: "Nova Despesa"
+            theme_text_color: 'Custom'
+            text_color: (1, 0, 0, 0.7)
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .51}   
+            MDLabel:
+                text:"Matricula"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id: matricula
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .4}  
+            MDIconButton:
+                icon: "chevron-down"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                on_release: root.data()
+
+            MDLabel:     
+                text:"Data"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            
+            MDLabel:
+                id: data
+                text: " "
+                font_size: "12sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 2.9} 
+
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .47}  
+            MDLabel:
+                text:"Valor"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: valor
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: False
+            Image: 
+                source: "images/4255155.png"    
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1  
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .32}  
+            MDLabel:
+                text:"Observação"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 1.27} 
+            TextInput:
+                id: obs
+                size_hint_y: 1.3
+                size_hint_x: 0.9
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .44, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "15sp"
+                multiline: True
+                password: False
+            Image: 
+                source: "images/editor-de-texto.png"     
+                pos_hint: {"center_x": .96, "center_y": .44}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": -0.3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1           
+
+        Button:
+            text: "Cadastrar"
+            background_color: (1, 0, 0, 0.9)
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .15}
+            on_release: root.cadastrarReceita(matricula.text, data.text, valor.text, obs.text)
+            radius: [2]      
+
+<RelatorioScreen>:
+    name: 'tabela'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'     
+
+        MDDropDownItem:
+            id: dropdown_item
+            pos_hint: {'center_x': 0.33, 'center_y': 0.95}
+            size_hint_x: None
+            width: "200dp"
+            text: " Global"
+            on_release: root.show_dropdown_options()
+
+        MDIconButton:
+            icon: "beaker-plus"
+            theme_text_color: 'Custom'
+            text_color: (0, 0.5, 0, 0.65)
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95, "center_x": 0.75}
+            on_press: root.filtrar_receitas()
+
+        MDIconButton:
+            icon: "beaker-minus"
+            theme_text_color: 'Custom'
+            text_color: (1, 0, 0, 0.7)
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95, "center_x": 0.9}
+            on_press: root.filtrar_despesas()
+        
+        MDIconButton:
+            icon: "filter-remove"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95, "center_x": 0.60}
+            on_press: root.filtrar_tudo()
+
+        BoxLayout:
+            size_hint_y: 0.55
+            pos_hint: {"center_x": 0.5, "center_y": 0.665}
+            md_bg_color: 0, 0, 0, 0.0
+            MDCard:
+                size_hint: 1, 0.07
+                pos_hint: {"center_x": 0.5, "center_y": 0.865}
+                md_bg_color: 0, 0, 0, 0
+                orientation: 'vertical'
+                MDLabel:
+                    text: root.matriculax
+                    theme_text_color: 'Custom'
+                    text_color: 0.3, 0.3, 0.3, 0.65
+                    font_size: '14sp'
+                    halign: 'center'
+                    bold: False
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {"center_x": 0.5, "center_y": 0.85}
+            size_hint_x: 0.95
+
+            MDCard:
+                size_hint: .9, .07
+                pos_hint: {"center_x": 0.9, "center_y": 0.5}
+                md_bg_color: 0, 1, 0, 0.0
+                orientation: 'vertical'
+                MDLabel:
+                    text: root.somaReceitas
+                    theme_text_color: 'Custom'
+                    text_color: 0.3, 0.3, 0.3, 1
+                    font_size: '13.5sp'
+                    halign: 'center'
+                MDLabel:
+                    text: 'Total de Receitas'
+                    theme_text_color: 'Custom'
+                    text_color: 0.3, 0.3, 0.3, 0.65
+                    font_size: '12.5sp'
+                    halign: 'center'
+            MDCard:
+                size_hint: .9, .07
+                pos_hint: {"center_x": 0.9, "center_y": 0.44}
+                md_bg_color: 0, 1, 0, 0.0 
+                orientation: 'vertical'
+                MDLabel:
+                    text: root.lucro
+                    theme_text_color: 'Custom'
+                    text_color: (0.3, 0.3, 0.3, 1) if root.statusA=='aderente' else (0.8, 0.4, 0, 0.75)
+                    font_size: '15sp'
+                    halign: 'center'
+                    bold: True
+                MDLabel:
+                    text: 'Total de Lucro'
+                    theme_text_color: 'Custom'
+                    text_color: 0.3, 0.3, 0.3, 0.65
+                    font_size: '12.5sp'
+                    halign: 'center'
+
+            MDCard:
+                size_hint: .9, .07
+                pos_hint: {"center_x": 0.1, "center_y": 0.5}
+                md_bg_color: 0, 1, 0, 0.0
+                orientation: 'vertical'
+                MDLabel:
+                    text: root.somaDespesas
+                    theme_text_color: 'Custom'
+                    text_color: 0.3, 0.3, 0.3, 1
+                    font_size: '13.5sp'
+                    halign: 'center'
+                MDLabel:
+                    text: 'Total de Despesas'
+                    theme_text_color: 'Custom'
+                    text_color: 0.3, 0.3, 0.3, 0.65
+                    font_size: '12.5sp'
+                    halign: 'center'
+            
+    MDBoxLayout:
+        size_hint_y: 0.75
+        orientation: 'vertical'
+        ScrollView:
+            MDList:
+                id: layout
+
+<FlowChangeScreen>:
+    name: 'changeFlowX'
+    MDFloatLayout:        
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDLabel:            
+            text: root.titulo
+            font_size: "20sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .88}  
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .05}    
+            id: lbchange
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .54}  
+            MDIconButton:
+                icon: "chevron-down"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                on_release: root.data()
+
+            MDLabel:     
+                text:"Data"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.4} 
+            
+            MDLabel:
+                id: data
+                font_size: "12sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 2.9} 
+
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .60}  
+            MDLabel:
+                text:"Valor"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: valor
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: False
+            MDIcon: 
+                icon: 'identifier' 
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1  
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .40}  
+            MDLabel:
+                text:"Observação"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 1.27} 
+            TextInput:
+                id: obs
+                size_hint_y: 1.3
+                size_hint_x: 0.9
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .44, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "15sp"
+                multiline: True
+                password: False
+            Image: 
+                source: "images/editor-de-texto.png"     
+                pos_hint: {"center_x": .96, "center_y": .44}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": -0.3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1       
+
+        Button:
+            text: "Gravar Alteração"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .22}
+            on_release: root.gravar(data.text, valor.text, obs.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2] 
+
+        Button:
+            text: "Cancelar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .13}
+            on_release: app.root.current = 'viewFlow'
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2] 
+
+
+
+<FlowViewScreen>:
+    name: 'viewFlow'
+    MDFloatLayout:        
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:            
+            icon: "chevron-left"
+            user_font_size: "65sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'tabela'
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .05}    
+            id: lbchange
+        MDLabel:            
+            text: root.titulo
+            font_size: "20sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .88}  
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .54} 
+             
+            MDLabel:     
+                text:"Data"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            
+            MDLabel:
+                id: data
+                text: root.data
+                font_size: "12sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 2.9}
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .60}  
+            MDLabel:
+                text:"Valor"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            MDLabel:
+                text: root.valor
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: False
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .40}  
+            MDLabel:
+                text:"Observação"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 1.27} 
+            MDLabel:
+                text: root.obs
+                size_hint_y: 1.3
+                size_hint_x: 0.9
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .44, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "15sp"
+                multiline: True
+                password: False
+
+        Button:
+            text: "Editar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .22}
+            on_release: root.editarClick()
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2] 
+        Button:
+            text: "Eliminar"
+            background_color: (1, 0, 0, 0.9)
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .13}
+            on_release: root.eliminarFlow()
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2] 
+
+<FrotaScreen>:
+    name: 'frota'
+    MDBoxLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation: 'vertical'
+        MDBoxLayout:
+            size_hint_y: .25
+            padding: dp(25)
+            MDIconButton:
+                icon: "plus"
+                width: dp(48)
+                size_hint: .3, 1  # Definindo tamanho relativo
+                on_release: app.root.current = 'cadastroativo'
+            
+            MDLabel:                            
+                text: "Dashboard"
+                halign: "center"
+                font_size: "16sp"
+                font_name: "Poppins-SemiBold.ttf"
+                size_hint_x: .4  # Definindo largura relativa
+                pos_hint: {"center_y": .5}  # Centralizando verticalmente
+                id: lbtitulo 
+    
+            MDIconButton:
+                icon: "exit-to-app"
+                size_hint: .3, 1  # Definindo tamanho relativo
+                on_release: app.root.current = 'splash'  
+
+        ScrollView:
+            GridLayout:
+                id: frota
+                cols: 2
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [dp(15), dp(15), dp(15), dp(35)]
+                spacing: dp(15)
+
+<FrotaCard>:
+    size_hint_y: None
+    height: "145dp"  # Ajuste o tamanho do FrotaCard aqui
+    md_bg_color: 188/255, 227/255, 217/255, 1
+    pos_hint: {"center_y": 0.5}
+
+    MDFloatLayout:
+        ElementCard:
+            id: btncard
+            image: root.icone
+            icon_size: (dp(70), dp(70))
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint_y: None
+            height: "145dp" 
+            on_release: root.on_card_click()
+            
+        MDIconButton:
+            icon: 'checkbox-blank-circle'
+            theme_text_color: 'Custom'
+            text_color: (0.8, 0.8, 0.8, 0.8) if root.status != 'Disponível' else (0, 0.5, 0, 0.65) if root.farol == 'aderente' else (1, 0.8, 0, 0.5) #verde(0, 0.5, 0, 0.65) #vermelho(1, 0, 0, 0.7) #Cinza(0.8, 0.8, 0.8, 0.8)
+            size_hint: None, None
+            size: dp(48), dp(48)
+            pos_hint: {"x": 0, "top": 1}
+
+        MDLabel:
+            text: root.matricula
+            font_size: "18sp" 
+            halign: "center" 
+            size_hint_y: None
+            height: self.texture_size[1]
+            pos_hint: {"center_x": .5, "y": 0.1}  # Ajuste o posicionamento vertical do texto abaixo da imagem
+
+<DashboardScreen>:
+    name: 'dashboard'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .93}
+            size_hint: None, None
+            on_press: app.root.current = 'frota'
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .1}    
+            id: lbchange
+        MDIconButton:
+            icon: "cog"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .93, "center_x": 0.9}
+            size_hint: None, None
+            on_press: app.root.current = 'change'
+        MDLabel:
+            text: 'Dashboard'
+            halign: "center"
+            font_size: "22sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .85}  # Linha editada
+            id: lbdashboard 
+
+        MDBoxLayout:
+            size_hint_y: .20
+            padding: dp(25)
+    
+        MDGridLayout:
+            pos_hint: {"center_x": .5, "center_y": .5}  # Linha editada
+            size_hint_y: .4
+            cols: 2
+            padding: [dp(15), dp(15), dp(15), dp(35)]
+            spacing: dp(15)
+            ElementCard:
+                image: "images/receita.png"
+                text: "Receitas"
+                on_release: app.root.current = 'checkin'
+                
+            ElementCard:
+                image: "images/despesas.png"
+                text: "Despesas"
+                on_release: app.root.current = 'checkout'
+            
+            ElementCard:
+                image: "images/dados.png"
+                text: "Relatório"
+                on_release: app.root.current = 'tabela'
+
+            ElementCard:
+                image: "images/economic.png"
+                text: "Gráfico"
+                
+
+        MDFloatLayout:
+            size_hint: .32, .08
+            pos_hint: {"center_x": .5}  
+            MDIconButton:
+                icon: 'trash-can'
+                pos_hint: {"center_x": .5, "center_y":  0.6}
+                on_release: root.eliminar_ativo()
+
+<CreateAssetScreen>:
+    name: 'cadastroativo' 
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'frota'
+            
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+            
+        MDLabel:
+            text: "Cadastre o Ativo"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+        
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}    
+            id: lbregister_pacient           
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}   
+            MDLabel:
+                text:"Matrícula"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id: matricula
+                text: ''
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"Marca"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            TextInput:
+                id: marca #cpf2
+                text: ''
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 2.85} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            MDIcon: 
+                icon: "domain"     
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"Receita Mínima"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: meta #senha2 
+                text: ''
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/key.png"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1            
+
+        Button:
+            text: "Cadastrar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.cadastroAtivo(matricula.text, marca.text, meta.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+
+<ChangeAssetScreen>:
+    name: 'change'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+            
+        MDLabel:
+            text: "Modificar Ativo"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+        
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}    
+            id: lbchange           
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}   
+            MDLabel:
+                text:"Matricula"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id : matricula
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .42}  
+            MDLabel:
+                text:"Marca"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            TextInput:
+                id: marca
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 2.85} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            MDIcon: 
+                icon: "domain"     
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .49}  
+            MDLabel:
+                text: "Status"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            MDDropDownItem:
+                id: dropdown_status
+                text: 'Selecione uma opção'
+                size_hint: 1.045, .6
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .5, "center_y": 0.27}
+                font_size: "17sp"
+                on_release: root.show_dropdown_options()  # Chama a função ao clicar no item
+            MDIcon: 
+                icon: "list-status"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+         
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"Receita Mínima"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: meta
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: False
+            MDIcon: 
+                icon: "cash-lock"    
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        Button:
+            text: "Guardar Alterações"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.editaInfo(matricula.text, marca.text, dropdown_status.text, meta.text) # Ajuste aqui
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
